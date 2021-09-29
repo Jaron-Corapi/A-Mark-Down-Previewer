@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- http://127.0.0.1:5500/Mark-Down-Previewer/Mark-Down-Previewer.html -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+  <title>Markdown Previewer</title>
+  <script src="markdown.js"></script>
+  <script>
+    console.log(marked("## mymarkdown"))
+
+    function updatedPreview(){
+      document.getElementById("preview").innerHTML = marked(document.getElementById("editor").value)
+    }
+
+    function setDefault(){
+      let defaultText = `\
+# Hello World
+
+## Here is a sub heading
+
+[Learn more about markdown on wikipedia](https://en.wikipedia.org/wiki/Markdown)
+
+> This is a block quote. As more text is added, and is forced to wrap around the edge of the screen,
+you have a block that looks like...nothing special. Sad day for Dev Ops.
+
+![Tux 2, also the mascot with a shorter URL](https://www.putorius.net/wp-content/uploads/2019/01/tux.jpg.webp)
+
+\`<h1>In line Code</h1>\`
+
+\`\`\`
+function hereIs(){
+  return aMultilineCodeBlock;
+}
+\`\`\`
+
+<dl>
+  <dt>Sometime you just need a list</dt>
+  <dd>More list-y type stuff</dd>
+</dl>
+
+- If
+- You
+- Still
+- Need
+- More
+- List
+- Options
+
+**Bolded Text**`;
+
+      let editorField = document.getElementById("editor");
+      let previewElement = document.getElementById("preview");
+      editorField.value = defaultText;
+      previewElement.innerHTML = marked(defaultText);
+    }
+
+
+  </script>
+</head>
+<body onload="setDefault()">
+  <div class="container-fluid">
+    <div class="row">
+    <div class="col text-center text-white bg-success">
+    <h3>This is a Markdown Previewer</h3>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-6 bg-primary d-flex flex-column">
+      <h2 class="text-white text-center my-3">The Markdown Editor:</h2>
+      <div class="form-group flex-grow-1 d-flex flex-column">
+      <textarea id="editor" onkeyup="updatedPreview()" class="form-control flex-grow-1"></textarea>
+    </div>
+    </div>
+    <div class="col-6 bg-info">
+      <h2 class="text-white text-center my-3">The Markdown Previewer:</h2>
+      <div id="preview"> </div>
+    </div>
+  </div>
+  </div>
+  <!--Popper and Bootstrap JS CDNs-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-W8fXfP3gkOKtndU4JGtKDvXbO53Wy8SZCQHczT5FMiiqmQfUpWbYdTil/SxwZgAN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js" integrity="sha384-skAcpIdS7UcVUC05LJ9Dxay8AXcDYfBJqt1CJ85S/CFujBsIzCIv+l9liuYLaMQ/" crossorigin="anonymous"></script>
+   <!--JQuery CDN-->
+   <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
